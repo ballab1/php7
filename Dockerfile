@@ -1,8 +1,8 @@
-ARG FROM_BASE=supervisord:20180329
+ARG FROM_BASE=nginx_base:20180329
 FROM $FROM_BASE
 
 # name and version of this docker image
-ARG CONTAINER_NAME=php5
+ARG CONTAINER_NAME=php7
 ARG CONTAINER_VERSION=1.0.8
 
 LABEL org_name=$CONTAINER_NAME \
@@ -26,4 +26,4 @@ RUN [ $DEBUG_TRACE != 0 ] || rm -rf /tmp/*
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 #CMD ["$CONTAINER_NAME"]
-CMD ["php5"]
+CMD ["php7"]
