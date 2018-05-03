@@ -1,15 +1,15 @@
-version: '3.5'
+version: '3.3'
 
 services:
     php7:
         build:
             args:
-                CBF_VERSION: ${CBF_VERSION:-dev}
+                CBF_VERSION: "${CBF_VERSION:-}"
                 CONTAINER_NAME: php7
-                CONTAINER_VERSION: 1.0.8
+                CONTAINER_VERSION: ${CONTAINER_VERSION:-3.0.0}
                 FROM_BASE: nginx_base:${CONTAINER_TAG:-latest}
             cache_from:
-                - alpine:3.6
+                - alpine:3.8
                 - base_container:${CONTAINER_TAG:-latest}
                 - supervisord:${CONTAINER_TAG:-latest}
                 - nginx_base:${CONTAINER_TAG:-latest}
@@ -18,8 +18,8 @@ services:
         container_name: php7
         environment:
             DEBUG_TRACE: ${DEBUG_TRACE:-0}
-            SUPERVISORD_PASS: ${CFG_PASS}
-            SUPERVISORD_USER: ${CFG_USER} 
+            SUPERVISORD_PASS: $CFG_PASS
+            SUPERVISORD_USER: $CFG_USER 
         hostname: php7
         image: php7:${CONTAINER_TAG:-latest}
         logging:
