@@ -28,7 +28,7 @@ services:
             SUPERVISORD_PASS: $CFG_PASS
             SUPERVISORD_USER: $CFG_USER
         hostname: php7
-        image: ${DOCKER_REGISTRY:-}php7:${CONTAINER_TAG:-latest}
+        image: ${DOCKER_REGISTRY:-}php/7.2.8-r1:${CONTAINER_TAG:-latest}
         logging:
             driver: json-file
             options:
