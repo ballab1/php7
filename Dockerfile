@@ -1,4 +1,4 @@
-ARG FROM_BASE=${DOCKER_REGISTRY:-}${OS:-}nginx_base/1.15.3:${BASE_TAG:-latest}
+ARG FROM_BASE=${DOCKER_REGISTRY:-}${CONTAINER_OS:-}nginx-base/${NGINX_VERSION:-1.15.3}:${BASE_TAG:-latest}
 FROM $FROM_BASE
 
 # name and version of this docker image
@@ -12,6 +12,10 @@ COPY build Dockerfile /tmp/
 # set to non zero for the framework to show verbose action scripts
 #    (0:default, 1:trace & do not cleanup; 2:continue after errors)
 ENV DEBUG_TRACE=0
+
+# php version being bundled in this docker image
+ARG PHP7_VERSION=7.2.8-r1
+LABEL php.version=$PHP7_VERSION
 
 
 # build content
